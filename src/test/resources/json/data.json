@@ -1,0 +1,21 @@
+{
+  "Search": {
+    "city": "Cusco",
+    "dateStart": "14 March 2024",
+    "dateEnd": "28 March 2024",
+    "ageChildren":"5 years old"
+    },
+
+  "Form": {
+    "First Name": "Francesca",
+    "Last Name": "Castillo",
+    "email Address": "francesca.castillo0@gmail.com",
+    "Country": "Chile",
+    "Mobile Phone": "+56937848701"
+  },
+
+  "Pay": {
+    "cardNumber": "4970100000000055",
+    "expirationDate": "01/26"
+  }
+  }

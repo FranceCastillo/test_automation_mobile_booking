@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(plugin = {"json:target/build/cucumber.json"},
             features = {"src/test/resources"},
             glue = {"com.booking.steps.booking"},
-            tags = "@SearchDestination"
+            tags = "@Regression"
 )
 
 public class RunnerTest {
