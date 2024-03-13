@@ -22,9 +22,11 @@ public class searchDestinationPage {
     static WebDriverWait wait = null;
 
     private static DropdownSelection dropdownSelection = new DropdownSelection();
+    private String priceText = "";
 
     //Locators for elements
     private static final By StartButton = By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']");
+    private static final By StaysButton = By.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id='com.booking:id/facet_index_section_search_header']/android.widget.LinearLayout[1]");
     private static final By Search = By.id("com.booking:id/facet_search_box_accommodation_destination");
     private static final By inputSearch = By.id("com.booking:id/facet_with_bui_free_search_booking_header_toolbar_content");
     private static final By Select_destination = By.xpath("//android.widget.TextView[1][@resource-id='com.booking:id/view_disambiguation_destination_title']");
@@ -36,6 +38,7 @@ public class searchDestinationPage {
     private static final By Button_apply_selectRoomsAndGuests = By.id("com.booking:id/group_config_apply_button");
     private static final By Search_button = By.id("com.booking:id/facet_search_box_legacy_theme_cta_border_bottom");
     private static final By Result = By.xpath("//android.widget.FrameLayout[@resource-id='com.booking:id/results_list_facet']");
+    private static final By PriceInitial = By.xpath("//android.view.ViewGroup[@resource-id='com.booking:id/price_view_holder']/android.widget.TextView[2]");
 
 
     static {
@@ -50,8 +53,14 @@ public class searchDestinationPage {
     }
 
     public void clicBuscador() {
-        WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(StartButton));
-        button.click();
+        try {
+            WebElement buttonStart = wait.until(ExpectedConditions.visibilityOfElementLocated(StartButton));
+            buttonStart.click();
+        } catch (Exception e)
+        {
+            WebElement buttonStays = wait.until(ExpectedConditions.visibilityOfElementLocated(StaysButton));
+            buttonStays.click();
+        }
     }
 
     public void enterDataSearch() {
@@ -100,6 +109,15 @@ public class searchDestinationPage {
     public void ValidResul() {
         WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(Result));
         result.isDisplayed();
+    }
+
+    public void PriceInitial() {
+        WebElement priceInitial = wait.until(ExpectedConditions.visibilityOfElementLocated(PriceInitial));
+        priceText = priceInitial.getText();
+    }
+
+    public String getPriceText(){
+        return priceText;
     }
 
 }

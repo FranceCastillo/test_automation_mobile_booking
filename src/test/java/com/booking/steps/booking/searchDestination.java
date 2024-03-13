@@ -22,8 +22,11 @@ public class searchDestination {
     public void iClickOnButton() {
         searchDestination.ClickOnButton();
     }
+
     @Then("I see the list of available accommodation results")
     public void iSeeTheListOfAvailableAccommodationResults() {
         searchDestination.ValidResul();
+        searchDestination.PriceInitial();
     }
+
 }

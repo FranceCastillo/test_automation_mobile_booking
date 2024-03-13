@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -25,9 +26,11 @@ public class accommodationPage {
 
     //Locators for elements
     private static final By Result1 = By.xpath("//android.widget.FrameLayout[@resource-id='com.booking:id/results_list_facet']/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[4]");
+    private static final String ResultPath = "//android.widget.FrameLayout[@resource-id='com.booking:id/results_list_facet']/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup";
     private static final By Result2 = By.xpath("//android.widget.FrameLayout[@resource-id='com.booking:id/results_list_facet']/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[3]");
     private static final By SelectRooms = By.id("com.booking:id/select_room_cta");
     private static final By SelectFirstOption = By.id("com.booking:id/recommended_block_reserve_button");
+    private static final By SelectFirstOptionBck = By.id("com.booking:id/list_item");
     private static final By ScreenData = By.xpath("//android.widget.TextView[@text='Fill in your info']");
 
 
@@ -43,14 +46,21 @@ public class accommodationPage {
     }
 
     public void selectOption() {
-        try {
-        WebElement result1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Result1));
-        result1.click();
-    } catch (Exception e)
-    {
-        WebElement result2 = wait.until(ExpectedConditions.visibilityOfElementLocated(Result2));
-        result2.click();
-    }
+        List<WebElement> results = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(ResultPath)));
+        if (results.size() > 4){
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.booking:id/bui_banner_close_button"))).click();
+            WebElement result1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Result1));
+            result1.click();
+        }else{
+            try {
+                WebElement result1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Result1));
+                result1.click();
+            } catch (Exception e){
+                    WebElement result2 = wait.until(ExpectedConditions.visibilityOfElementLocated(Result2));
+                    result2.click();
+            }
+        }
+
  }
 
     public void selectRooms() {
@@ -59,8 +69,14 @@ public class accommodationPage {
     }
 
     public void SelectFirstOption() {
-        WebElement selectFirstOption = wait.until(ExpectedConditions.visibilityOfElementLocated(SelectFirstOption));
-        selectFirstOption.click();
+        try{
+            WebElement selectFirstOption = wait.until(ExpectedConditions.visibilityOfElementLocated(SelectFirstOption));
+            selectFirstOption.click();
+        }catch (Exception e){
+            WebElement selectFirstOption = wait.until(ExpectedConditions.visibilityOfElementLocated(SelectFirstOptionBck));
+            selectFirstOption.click();
+        }
+
     }
 
     public void ValidScreenData() {
@@ -71,3 +87,7 @@ public class accommodationPage {
 
 }
 
+/*
+
+
+ */

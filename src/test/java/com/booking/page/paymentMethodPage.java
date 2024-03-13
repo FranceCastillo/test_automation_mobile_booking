@@ -24,11 +24,17 @@ public class paymentMethodPage {
     static HashMap<String, Map> jsonData;
     static WebDriverWait wait = null;
 
+    private String priceTextPayment = "";
+
+    private searchDestinationPage searchDestinationPageClass = new searchDestinationPage();
+
     //Locators for elements
     private static final By FinalStep_Button = By.xpath("//android.widget.Button[@resource-id='com.booking:id/action_button']");
     private static final By InputCreditCard = By.xpath("//android.widget.EditText[@resource-id='com.booking:id/new_credit_card_number_edit']");
     private static final By InputExpirationDate = By.xpath("//android.widget.EditText[@resource-id='com.booking:id/new_credit_card_expiry_date_edit']");
     private static final By Book_Button = By.xpath("//android.widget.Button[@resource-id='com.booking:id/action_button']");
+    private static final By PriceFinal = By.xpath("//android.widget.TextView[@resource-id='com.booking:id/title']");
+
 
 
 
@@ -56,15 +62,25 @@ public class paymentMethodPage {
             String cardNumber = (String) PayDetails.get("cardNumber");
             String expirationDate = (String) PayDetails.get("expirationDate");
 
-            WebElement inputCreditCard = wait.until(ExpectedConditions.visibilityOfElementLocated(InputCreditCard));
-            inputCreditCard.click();
-            inputCreditCard.clear();
-            inputCreditCard.sendKeys(cardNumber);
-            WebElement inputExpirationDate = wait.until(ExpectedConditions.visibilityOfElementLocated(InputExpirationDate));
-            inputExpirationDate.click();
-            inputExpirationDate.clear();
-            inputExpirationDate.sendKeys(expirationDate);
-            androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
+            /*
+            Compare prices
+             */
+
+            if (searchDestinationPageClass.getPriceText().equals(priceTextPayment)){
+                //assertion
+                WebElement inputCreditCard = wait.until(ExpectedConditions.visibilityOfElementLocated(InputCreditCard));
+                inputCreditCard.click();
+                inputCreditCard.clear();
+                inputCreditCard.sendKeys(cardNumber);
+                WebElement inputExpirationDate = wait.until(ExpectedConditions.visibilityOfElementLocated(InputExpirationDate));
+                inputExpirationDate.click();
+                inputExpirationDate.clear();
+                inputExpirationDate.sendKeys(expirationDate);
+                androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
+            }else{
+                //assertion
+            }
+
         } else {
             System.out.println("Los detalles de búsqueda no están disponibles");
         }
@@ -73,6 +89,11 @@ public class paymentMethodPage {
     public void ClickBook_Button() {
         WebElement book_Button = wait.until(ExpectedConditions.visibilityOfElementLocated(Book_Button));
         book_Button.click();
+    }
+
+    public void PricePayment() {
+        WebElement priceInitial = wait.until(ExpectedConditions.visibilityOfElementLocated(PriceFinal));
+        priceTextPayment = priceInitial.getText();
     }
 
 }

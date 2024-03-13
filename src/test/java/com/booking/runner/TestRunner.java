@@ -6,10 +6,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"json:target/build/cucumber.json"},
-            features = {"src/test/resources"},
+            features = {"src/test/resources/features"},
             glue = {"com.booking.steps.booking"},
             tags = "@Regression"
 )
 
-public class RunnerTest {
+public class TestRunner {
 }

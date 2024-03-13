@@ -2,6 +2,7 @@ package com.booking.page;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.junit.Assert;
@@ -24,17 +25,21 @@ public class informationFormPage {
     static HashMap<String, Map> jsonData;
     static WebDriverWait wait = null;
 
+    TouchAction touchAction = new TouchAction(androidDriver);
+
     //Locators for elements
     private static final By InputFirstName = By.xpath("//javaClass[@resource-id='com.booking:id/bstage1_contact_firstname_value']/android.widget.EditText");
     private static final By InputLastName = By.xpath("//javaClass[@resource-id='com.booking:id/bstage1_contact_lastname_value']/android.widget.EditText");
     private static final By InputEmailAddress = By.xpath("//javaClass[@resource-id='com.booking:id/bstage1_contact_email_value']/android.widget.AutoCompleteTextView");
+    private static final By InputAddress = By.xpath("//javaClass[@resource-id='com.booking:id/bstage1_contact_address_value']/android.widget.EditText");
+    private static final By InputZipCode = By.xpath("//javaClass[@resource-id='com.booking:id/bstage1_contact_zipcode_value']/android.widget.EditText");
+    private static final By InputCity = By.xpath("//javaClass[@resource-id='com.booking:id/bstage1_contact_city_value']/android.widget.EditText");
     private static final By InputCountry = By.xpath("//javaClass[@resource-id='com.booking:id/bstage1_contact_country_value']/android.widget.AutoCompleteTextView");
     private static final By InputMobilePhone = By.xpath("//javaClass[@resource-id='com.booking:id/bstage1_contact_telephone_value']/android.widget.EditText");
     private static final By Next_Button = By.xpath("//android.widget.Button[@resource-id='com.booking:id/action_button']");
     private static final By PriceSummary = By.xpath("//android.widget.TextView[@resource-id='com.booking:id/bp_price_summary_total_price_value']");
     private static final By CheckInSummary = By.xpath("//android.widget.TextView[@resource-id='com.booking:id/checkin_date']");
     private static final By CheckOnSummary = By.xpath("//android.widget.TextView[@resource-id='com.booking:id/checkout_date']");
-
 
 
     static {
@@ -48,7 +53,7 @@ public class informationFormPage {
         }
     }
 
-    public void EnterInformation() {
+    public void EnterInformation() throws InterruptedException {
         Map<String, Object> searchDetails = (Map<String, Object>) jsonData.get("Form");
         if (searchDetails != null) {
             String FirstName = (String) searchDetails.get("First Name");
@@ -56,6 +61,9 @@ public class informationFormPage {
             String emailAddress = (String) searchDetails.get("email Address");
             String Country = (String) searchDetails.get("Country");
             String MobilePhone = (String) searchDetails.get("Mobile Phone");
+            String Address = (String) searchDetails.get("Address");
+            String ZipCode = (String) searchDetails.get("ZipCode");
+            String City = (String) searchDetails.get("City");
             WebElement inputFirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(InputFirstName));
             inputFirstName.click();
             inputFirstName.clear();
@@ -68,10 +76,22 @@ public class informationFormPage {
             inputEmailAddress.click();
             inputEmailAddress.clear();
             inputEmailAddress.sendKeys(emailAddress);
-            WebElement inputCountry = wait.until(ExpectedConditions.visibilityOfElementLocated(InputCountry));
-            inputCountry.click();
-            inputCountry.clear();
-            inputCountry.sendKeys(Country);
+            WebElement inputAddress = wait.until(ExpectedConditions.visibilityOfElementLocated(InputAddress));
+            inputAddress.click();
+            inputAddress.clear();
+            inputAddress.sendKeys(Address);
+            androidDriver.pressKey(new KeyEvent(AndroidKey.TAB));
+            WebElement inputZipCode = wait.until(ExpectedConditions.visibilityOfElementLocated(InputZipCode));
+            inputZipCode.click();
+            inputZipCode.clear();
+            inputZipCode.sendKeys(ZipCode);
+            androidDriver.pressKey(new KeyEvent(AndroidKey.TAB));
+            WebElement inputCity = wait.until(ExpectedConditions.visibilityOfElementLocated(InputCity));
+            inputCity.click();
+            inputCity.clear();
+            inputCity.sendKeys(City);
+            androidDriver.pressKey(new KeyEvent(AndroidKey.TAB));
+            androidDriver.pressKey(new KeyEvent(AndroidKey.TAB));
             WebElement inputMobilePhone = wait.until(ExpectedConditions.visibilityOfElementLocated(InputMobilePhone));
             inputMobilePhone.click();
             inputMobilePhone.clear();
@@ -87,10 +107,7 @@ public class informationFormPage {
         next_Button.click();
     }
 
-    public void ValidInformationSumary(String expectedPrice, String expectedCheckIn, String expectedCheckOut) {
-        WebElement priceSummaryElement = wait.until(ExpectedConditions.visibilityOfElementLocated(PriceSummary));
-        String actualPrice = priceSummaryElement.getText();
-        Assert.assertEquals("El precio no coincide", expectedPrice, actualPrice);
+    public void ValidInformationSumary(String expectedCheckIn, String expectedCheckOut) {
 
         WebElement checkInSummaryElement = wait.until(ExpectedConditions.visibilityOfElementLocated(CheckInSummary));
         String actualCheckIn = checkInSummaryElement.getText();

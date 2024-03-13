@@ -25,6 +25,7 @@ public class withoutDestinationPage {
     //Locators for elements
     private static final By AlertMessage = By.id("com.booking:id/message");
     private static final By Search_button = By.id("com.booking:id/facet_search_box_legacy_theme_cta_border_bottom");
+    private static final By Ok_button = By.id("com.booking:id/button_positive");
 
 
     static {
@@ -48,5 +49,7 @@ public class withoutDestinationPage {
         WebElement alertMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(AlertMessage));
         String actualMessage = alertMessage.getText();
         Assert.assertEquals("El mensaje de alerta no coincide", expectedMessage, actualMessage);
+        WebElement ok_button = wait.until(ExpectedConditions.visibilityOfElementLocated(Ok_button));
+        ok_button.click();
     }
 }

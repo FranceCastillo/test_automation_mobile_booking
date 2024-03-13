@@ -6,8 +6,14 @@ public class paymentMethod {
 
     paymentMethodPage methodPage = new paymentMethodPage();
 
+    @And("I verify the price")
+    public void Verifyprice() throws InterruptedException {
+        methodPage.PricePayment();
+
+    }
+
     @And("I click on Final step button")
-    public void iClickOnNextStepButton() {
+    public void iClickOnNextStepButton() throws InterruptedException {
         methodPage.ClickFinalButton();
 
     }
