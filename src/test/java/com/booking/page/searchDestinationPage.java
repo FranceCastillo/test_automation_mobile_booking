@@ -93,12 +93,10 @@ public class searchDestinationPage {
             System.out.println("Los detalles de búsqueda no están disponibles");
         }
     }
-
     public void ClickOnButton() {
         WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(Search_button));
         button.click();
     }
-
     public void ValidResul() {
         WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(Result));
         result.isDisplayed();

@@ -27,5 +27,4 @@ public class accommodationResults {
     public void i_see_on_the_customer_information_entry_screen() {
         accommodation.ValidScreenData();
     }
-
 }
