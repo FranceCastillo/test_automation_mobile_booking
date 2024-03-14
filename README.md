@@ -7,7 +7,7 @@ para la creación de un framework de automatización que permita probar la app d
 ## 🏠 Detalles del Tester
 
 * Name: `Francesca Castillo`
-* Country: `Santiago de Chile`
+* Country: `Chile`
 * City: `Santiago de Chile`
 * LinkedIn: [https://www.linkedin.com/in/francesca-castillo/](https://www.linkedin.com/in/francesca-castillo/)
 
