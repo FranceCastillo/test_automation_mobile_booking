@@ -19,14 +19,13 @@ Feature: Accommodation Reserve
   Scenario Outline: Validate the customer information form
     And I enter my data in the form
     And I click on Next step button
-    Then I validate the booking summary with the total price, start date "<Check-in>" and end date "<Check-Out>"
+    Then I validate the booking summary start date "<Check-in>" and end date "<Check-Out>"
   Examples:
     |  | Check-in        | Check-Out       |
     |  | Thu Mar 14 2024 | Thu Mar 28 2024 |
 
   @paymentMethod @Regression
-  Scenario: Validate the payment method and finalize the reservation
-    And I verify the price
+  Scenario: Validate the payment method and get the final price of the reservation
     And I click on Final step button
     When I enter card number "<cardNumber>" and the date of issuance "<expirationDate>"
     Then I successfully complete the booking

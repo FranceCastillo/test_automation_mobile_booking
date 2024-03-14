@@ -13,7 +13,7 @@ de pruebas manuales de los casos de prueba ya diseñados en sus Test Suite, con 
 que ninguna funcionalidad disponible para los usuarios haya sido alterada o impactada por los nuevos
 cambios implementados y desplegados en producción.
 
-### 💡 Solución:
+### 💡 Propuesta:
 
 Para mejorar la rapidez y asegurar que la aplicación móvil funcione correctamente 
 tras hacerle modificaciones, se propone implementar conjuntos de pruebas automatizadas

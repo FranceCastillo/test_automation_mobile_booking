@@ -2,6 +2,8 @@ package com.booking.page;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,6 +24,10 @@ public class withoutDestinationPage {
     static HashMap<String, Map> jsonData;
     static WebDriverWait wait = null;
 
+    int x = 100;
+    int y = 200;
+    TouchAction touchAction = new TouchAction(androidDriver);
+
     //Locators for elements
     private static final By AlertMessage = By.id("com.booking:id/message");
     private static final By Search_button = By.id("com.booking:id/facet_search_box_legacy_theme_cta_border_bottom");
@@ -39,11 +45,12 @@ public class withoutDestinationPage {
         }
     }
 
+
     public void ClickSearchButton() {
+        touchAction.tap(PointOption.point(x, y)).perform();
         WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(Search_button));
         button.click();
     }
-
 
     public void ValidAlertMessage(String expectedMessage) {
         WebElement alertMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(AlertMessage));

@@ -28,5 +28,4 @@ public class searchDestination {
         searchDestination.ValidResul();
         searchDestination.PriceInitial();
     }
-
 }

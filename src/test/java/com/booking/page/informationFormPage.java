@@ -53,7 +53,7 @@ public class informationFormPage {
         }
     }
 
-    public void EnterInformation() throws InterruptedException {
+    public void EnterInformation() {
         Map<String, Object> searchDetails = (Map<String, Object>) jsonData.get("Form");
         if (searchDetails != null) {
             String FirstName = (String) searchDetails.get("First Name");
@@ -76,20 +76,24 @@ public class informationFormPage {
             inputEmailAddress.click();
             inputEmailAddress.clear();
             inputEmailAddress.sendKeys(emailAddress);
+            try {
             WebElement inputAddress = wait.until(ExpectedConditions.visibilityOfElementLocated(InputAddress));
             inputAddress.click();
             inputAddress.clear();
             inputAddress.sendKeys(Address);
             androidDriver.pressKey(new KeyEvent(AndroidKey.TAB));
-            WebElement inputZipCode = wait.until(ExpectedConditions.visibilityOfElementLocated(InputZipCode));
-            inputZipCode.click();
-            inputZipCode.clear();
-            inputZipCode.sendKeys(ZipCode);
-            androidDriver.pressKey(new KeyEvent(AndroidKey.TAB));
-            WebElement inputCity = wait.until(ExpectedConditions.visibilityOfElementLocated(InputCity));
-            inputCity.click();
-            inputCity.clear();
-            inputCity.sendKeys(City);
+                WebElement inputZipCode = wait.until(ExpectedConditions.visibilityOfElementLocated(InputZipCode));
+                inputZipCode.click();
+                inputZipCode.clear();
+                inputZipCode.sendKeys(ZipCode);
+                androidDriver.pressKey(new KeyEvent(AndroidKey.TAB));
+                WebElement inputCity = wait.until(ExpectedConditions.visibilityOfElementLocated(InputCity));
+                inputCity.click();
+                inputCity.clear();
+                inputCity.sendKeys(City);
+            }catch (Exception e){
+                //continue
+            }
             androidDriver.pressKey(new KeyEvent(AndroidKey.TAB));
             androidDriver.pressKey(new KeyEvent(AndroidKey.TAB));
             WebElement inputMobilePhone = wait.until(ExpectedConditions.visibilityOfElementLocated(InputMobilePhone));

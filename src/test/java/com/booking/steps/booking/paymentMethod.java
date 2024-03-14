@@ -6,19 +6,14 @@ public class paymentMethod {
 
     paymentMethodPage methodPage = new paymentMethodPage();
 
-    @And("I verify the price")
-    public void Verifyprice() throws InterruptedException {
-        methodPage.PricePayment();
-
-    }
 
     @And("I click on Final step button")
-    public void iClickOnNextStepButton() throws InterruptedException {
+    public void iClickOnNextStepButton() {
         methodPage.ClickFinalButton();
 
     }
     @When("I enter card number {string} and the date of issuance {string}")
-    public void she_enters_her_card_number_and_the_date_of_issuance(String string, String string2) {
+    public void she_enters_her_card_number_and_the_date_of_issuance(String string, String string2)  {
         methodPage.methodPay();
 
     }

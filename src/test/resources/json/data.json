@@ -19,6 +19,7 @@
 
   "Pay": {
     "cardNumber": "4970100000000055",
-    "expirationDate": "01/26"
+    "expirationDate": "01/26",
+    "CVC": "252"
   }
   }

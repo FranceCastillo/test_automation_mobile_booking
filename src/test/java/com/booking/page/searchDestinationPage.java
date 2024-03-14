@@ -22,7 +22,6 @@ public class searchDestinationPage {
     static WebDriverWait wait = null;
 
     private static DropdownSelection dropdownSelection = new DropdownSelection();
-    private String priceText = "";
 
     //Locators for elements
     private static final By StartButton = By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']");
@@ -111,12 +110,9 @@ public class searchDestinationPage {
         result.isDisplayed();
     }
 
-    public void PriceInitial() {
+    public String PriceInitial() {
         WebElement priceInitial = wait.until(ExpectedConditions.visibilityOfElementLocated(PriceInitial));
-        priceText = priceInitial.getText();
-    }
-
-    public String getPriceText(){
+        String priceText = priceInitial.getText();
         return priceText;
     }
 

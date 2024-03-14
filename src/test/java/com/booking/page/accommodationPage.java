@@ -75,6 +75,8 @@ public class accommodationPage {
         }catch (Exception e){
             WebElement selectFirstOption = wait.until(ExpectedConditions.visibilityOfElementLocated(SelectFirstOptionBck));
             selectFirstOption.click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.booking:id/main_action"))).click();
+
         }
 
     }
